@@ -49,11 +49,12 @@ User.find({"creation_date": {"$gte":date1, "$lte":date2}}).then((user) => {
     })
 })
 
+
 app.post("/smartcontainer/insert", (req, res) => {
 
-    req.query.creation_date=new Date().toISOString() 
-    console.log(req.query.creation_date)
-    const user = new User(req.query)
+    req.body.creation_date=new Date().toISOString() 
+    console.log(req.body.creation_date)
+    const user = new User(req.body)
     console.log(user)
 
     // console.log(user)
@@ -62,6 +63,7 @@ app.post("/smartcontainer/insert", (req, res) => {
     }).catch((e) => {
     res.status(400).send(e)
 })
+        
         
 
 })
