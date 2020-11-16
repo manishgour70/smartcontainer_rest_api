@@ -1,3 +1,4 @@
+const { query } = require('express')
 const express = require('express')
 require('mongoose')
 require('./mongoose')
@@ -50,8 +51,12 @@ User.find({"creation_date": {"$gte":date1, "$lte":date2}}).then((user) => {
 
 app.post("/smartcontainer/insert", (req, res) => {
 
-    const user = new User(req.body)
+    req.query.creation_date=new Date().toISOString() 
+    console.log(req.query.creation_date)
+    const user = new User(req.query)
     console.log(user)
+
+    // console.log(user)
     user.save().then(() => {
     res.send(user)
     }).catch((e) => {
