@@ -3,6 +3,7 @@ const express = require('express')
 require('mongoose')
 require('./mongoose')
 const User = require('./model.js')
+var bodyParser = require('body-parser')
 
 
 const app = express()
@@ -49,13 +50,14 @@ User.find({"creation_date": {"$gte":date1, "$lte":date2}}).then((user) => {
     })
 })
 
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.post("/smartcontainer/insert", (req, res) => {
 
     req.body.creation_date=new Date().toISOString() 
-    console.log(req.body.creation_date)
+    // console.log(req.body.creation_date)
     const user = new User(req.body)
-    console.log(user)
+    // console.log(user)
+
 
     // console.log(user)
     user.save().then(() => {
@@ -63,7 +65,6 @@ app.post("/smartcontainer/insert", (req, res) => {
     }).catch((e) => {
     res.status(400).send(e)
 })
-        
         
 
 })
