@@ -3,10 +3,11 @@ const express = require('express')
 require('mongoose')
 require('./mongoose')
 const User = require('./model.js')
+var cors = require('cors')
 var bodyParser = require('body-parser')
 
-
 const app = express()
+app.use(cors())
 const port = process.env.PORT || 3000
 
 app.use(express.json())
