@@ -32,7 +32,7 @@ app.get('/smartcontainer/currentDate',function (req, res) {
     date4=new Date(date2.setTime(date2.getTime()+date2.getTimezoneOffset()*60*1000));
     // console.log(date3)
     // console.log(date4)
-    User.find({"creation_date": {$gte:date3.toISOString(),$lt:date4.toISOString()}},schema).then((user) => {
+    User.find({"creation_date": {$gt:date4.toISOString(),$lte:date3.toISOString()}},schema).then((user) => {
            // console.log(user)
     res.status(201).send(user)
     }).catch((e) => {
