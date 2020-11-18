@@ -27,7 +27,7 @@ app.get('/smartcontainer/currentDate',function (req, res) {
     else{
         date2=new Date(req.query.date1)
         date1=new Date(req.query.date1)
-        date2.setDate(date1.getDate()+1)
+        date2.setDate(date2.getDate()+1)
 }
 //     date3=new Date(date1.setTime(date1.getTime()+date1.getTimezoneOffset()*60*1000));
 //     date4=new Date(date2.setTime(date2.getTime()+date2.getTimezoneOffset()*60*1000));
