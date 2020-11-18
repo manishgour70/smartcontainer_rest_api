@@ -14,32 +14,32 @@ app.use(express.json())
 
 var schema={sensor_id:1, creation_date:1, height:1}
 
-
 app.get('/smartcontainer/currentDate',function (req, res) {
-    var date1, date2
+    var date1=new Date()
+    var date2=new Date()
     
     if(Object.keys(req.query).length === 0)
     {
-        date2=new Date()
-        date1=new Date()
-    date2.setDate(date1.getDate()+1)
+        date2.setDate(date2.getDate()+1)
     }
     else{
         date2=new Date(req.query.date1)
         date1=new Date(req.query.date1)
-        date2.setDate(date2.getDate()+1)
-}
-//     date3=new Date(date1.setTime(date1.getTime()+date1.getTimezoneOffset()*60*1000));
-//     date4=new Date(date2.setTime(date2.getTime()+date2.getTimezoneOffset()*60*1000));
-    // console.log(date3)
-    // console.log(date4)
-    User.find({"creation_date": {$gte:date1.toISOString(),$lte:date2.toISOString()}},schema).then((user) => {
-           // console.log(user)
+        date2.setDate(date1.getDate()+1)
+    }
+    
+    date3=new Date(date1.setTime(date1.getTime()+date1.getTimezoneOffset()*60*1000));
+    date4=new Date(date2.setTime(date2.getTime()+date2.getTimezoneOffset()*60*1000));
+    console.log(date3)
+    console.log(date4)
+    User.find({"creation_date": {$gte:date3.toISOString(),$lte:date4.toISOString()}},schema).then((user) => {
+        // console.log(user)
     res.status(201).send(user)
     }).catch((e) => {
         res.status(400).send(e)
     })
 })
+
   
 app.get('/smartcontainer/range', (req, res) => {
 
