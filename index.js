@@ -28,9 +28,12 @@ app.get('/smartcontainer/currentDate',function (req, res) {
     var date1=new Date(req.query.date1)
     date2.setDate(date1.getDate()+1)
 }
-    
-    User.find({"creation_date": {$gte:date1.toISOString(),$lt:date2.toISOString()}},schema).then((user) => {
-        // console.log(user)
+    date3=new Date(date1.setTime(date1.getTime()+date1.getTimezoneOffset()*60*1000));
+    date4=new Date(date2.setTime(date2.getTime()+date2.getTimezoneOffset()*60*1000));
+    // console.log(date3)
+    // console.log(date4)
+    User.find({"creation_date": {$gte:date3.toISOString(),$lt:date4.toISOString()}},schema).then((user) => {
+           // console.log(user)
     res.status(201).send(user)
     }).catch((e) => {
         res.status(400).send(e)
