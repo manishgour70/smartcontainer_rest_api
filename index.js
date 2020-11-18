@@ -21,15 +21,15 @@ app.get('/smartcontainer/currentDate',function (req, res) {
     {
     var date2=new Date()
     var date1=new Date()
-    date1.setDate(date1.getDate()+1)
+    date2.setDate(date1.getDate()+1)
     }
     else{
     var date2=new Date(req.query.date1)
     var date1=new Date(req.query.date1)
-    date1.setDate(date1.getDate()+1)
+    date2.setDate(date1.getDate()+1)
 }
     
-    User.find({"creation_date": {$gt:date2.toISOString(),$lte:date1.toISOString()}},schema).then((user) => {
+    User.find({"creation_date": {$gte:date1.toISOString(),$lt:date2.toISOString()}},schema).then((user) => {
         // console.log(user)
     res.status(201).send(user)
     }).catch((e) => {
