@@ -47,8 +47,11 @@ app.get('/smartcontainer/range', (req, res) => {
 
 var date1=new Date(req.query.date1).toISOString()
 var date2=new Date(req.query.date2).toISOString()
-    
-User.find({"creation_date": {"$gte":date1, "$lte":date2}}).then((user) => {
+
+ date3=new Date(date1.setTime(date1.getTime()+date1.getTimezoneOffset()*60*1000));
+ date4=new Date(date2.setTime(date2.getTime()+date2.getTimezoneOffset()*60*1000));
+
+    User.find({"creation_date": {"$gte":date3, "$lte":date4}}).then((user) => {
   
   console.log(user)
     res.status(201).send(user)
