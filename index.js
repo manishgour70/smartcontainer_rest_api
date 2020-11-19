@@ -12,9 +12,9 @@ const port = process.env.PORT || 3000
 
 app.use(express.json())
 
-var schema={sensor_id:1, creation_date:1, height:1,__v:1}
+var schema={sensor_id:1, creation_date:1, height:1,fall:1}
 
-var schema_fall={ __v:1}
+var schema_fall={ fall:1}
 
 
 app.get('/smartcontainer/currentDate',function (req, res) {
