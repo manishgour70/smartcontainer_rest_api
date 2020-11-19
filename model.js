@@ -9,6 +9,9 @@ const sc=mongoose.model('smartcontainer',{
     },
     height:{
         type:Number
+    },
+    __v:{
+        type:String
     }
 ,},'smartcontainer')
 
